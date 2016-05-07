@@ -159,7 +159,7 @@ point.prototype.display = function(){
     this.y = this.nory;
     this.color = this.truecolor;
     this.circleDom = svg.selectAll('#'+this.gId).append('circle').attr("cx",this.x).attr("cy",this.y).attr("r",this.value).attr("fill",this.color).attr("stroke","none")
-    this.textDom = svg.selectAll('#'+this.gId).append('text').text(this.name).attr('x',this.textx).attr('y',this.texty).attr('fill',this.fill).attr('font-size','5px')
+    this.textDom = svg.selectAll('#'+this.gId).append('text').text(this.name).attr('x',this.textx).attr('y',this.texty).attr('fill',this.fill).attr('font-size','12px')
     var that = this;
     this.textDom.attr('x',function(){
         if (d3.select(this).attr('x') < that.centerX){
@@ -212,7 +212,18 @@ bgMain.prototype.init = function(){
 
     this.pointOffset = [this.pathR*getRadianByAngle(this.angle*0.8,'sin'),this.pathR*getRadianByAngle(this.angle*0.8,'cos')];
     this.textOffset = [this.textR*getRadianByAngle(this.angle*0.8,'sin'),this.textR*getRadianByAngle(this.angle*0.8,'cos')];
-    this.datas = [[[this.x+this.pointOffset[0],this.y-this.pointOffset[1]],[this.x+this.textOffset[0],this.y-this.textOffset[1]],this.data[0]],[[this.x-this.pointOffset[0],this.y-this.pointOffset[1]],[this.x-this.textOffset[0],this.y-this.textOffset[1]],this.data[1]]]
+    this.datas = [
+        [
+            [this.x+this.pointOffset[0],this.y-this.pointOffset[1]],
+            [this.x+this.textOffset[0],this.y-this.textOffset[1]],
+            this.data[0]
+        ],
+        [
+            [this.x-this.pointOffset[0],this.y-this.pointOffset[1]],
+            [this.x-this.textOffset[0],this.y-this.textOffset[1]],
+            this.data[1]
+        ]
+    ]
     this.pointArr = [];
     this.textArr = [];
 }
